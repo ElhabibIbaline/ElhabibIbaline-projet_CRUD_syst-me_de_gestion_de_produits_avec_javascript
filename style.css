@@ -74,3 +74,31 @@ button:hover {
     letter-spacing: 1px;
 
 }
+
+/*=====================
+outputs
+=========================*/
+
+.btnSearch {
+    display: flex;
+    justify-content: space-between;
+
+}
+
+.btnSearch button {
+    width: 45%;
+}
+
+table {
+    width: 100%;
+    text-align: center;
+    margin: 10px 0;
+}
+
+table th {
+    text-transform: uppercase;
+}
+
+th, td {
+    padding: 5px;
+}
