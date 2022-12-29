@@ -14,18 +14,18 @@ let submit = document.getElementById("submit");
 
 //getTotal + modifier le html (onkeyup)
 function getTotal() {
-    // console.log('done');
+  // console.log('done');
 
-    if (price.value != "") {
-      let result = +price.value + +taxes.value + +ads.value - +discount.value;
-      total.innerHTML = result;
-  
-      total.style.background = "#040"; //vert
-    } else {
-      total.innerHTML = "";
-      total.style.background = "#a00d02"; //rouge
-    }
+  if (price.value != "") {
+    let result = +price.value + +taxes.value + +ads.value - +discount.value;
+    total.innerHTML = result;
+
+    total.style.background = "#040"; //vert
+  } else {
+    total.innerHTML = "";
+    total.style.background = "#a00d02"; //rouge
   }
+}
 
 
 /*=========================
@@ -58,6 +58,7 @@ submit.onclick = function () {
 
   // Quand on clique sur create on envoie les données au localStorage puis on declenche la fonction clearData pour rendre des inputs vides
   clearData();
+  // showData();
 };
 
 /*=========================
@@ -75,4 +76,32 @@ function clearData() {
   category.value = "";
 }
 
+/*=========================
+read data
+============================== */
+
+function showData() {
+
+  let table = "";
+
+  for (let i = 0; i < dataPro.length; i++) {
+    table += `
+      <tr>
+          <td>${i}</td>
+          <td>${dataPro[i].title} </td>
+          <td>${dataPro[i].price} </td>
+          <td>${dataPro[i].taxes} </td>
+          <td>${dataPro[i].ads} </td>
+          <td>${dataPro[i].discount} </td>
+          <td>${dataPro[i].total} </td>
+          <td>${dataPro[i].category} </td>
+          <td><button id="update">update</button></td>
+          <td><button id="delete">delete</button></td>
+      </tr>`;
+
+  }
+
+  document.getElementById("tbody").innerHTML = table;
+}
+showData();
 
