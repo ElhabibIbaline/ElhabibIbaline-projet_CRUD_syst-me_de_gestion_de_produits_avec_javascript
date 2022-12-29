@@ -58,7 +58,7 @@ submit.onclick = function () {
 
   // Quand on clique sur create on envoie les données au localStorage puis on declenche la fonction clearData pour rendre des inputs vides
   clearData();
-  // showData();
+  showData();
 };
 
 /*=========================
@@ -102,8 +102,18 @@ function showData() {
   }
 
   document.getElementById("tbody").innerHTML = table;
+
+  let btnDelete = document.getElementById("deleteAll");
+  if (dataPro.length > 0) {
+    btnDelete.innerHTML = `
+    <button onclick="deleteAll()"> Delete All</button>`;
+  } else {
+    btnDelete.innerHTML = "";
+  }
+
 }
 showData();
+
 
 /*=========================
 delete one data
@@ -114,3 +124,12 @@ function deleteData(i) {
   showData();
 }
 
+
+/*=========================
+deleteAll
+============================== */
+function deleteAll() {
+  localStorage.clear();
+  dataPro.splice(0);
+  showData();
+}
