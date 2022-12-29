@@ -56,4 +56,23 @@ submit.onclick = function () {
 
   localStorage.setItem("product", JSON.stringify(dataPro));
 
+  // Quand on clique sur create on envoie les données au localStorage puis on declenche la fonction clearData pour rendre des inputs vides
+  clearData();
 };
+
+/*=========================
+clear data
+============================== */
+
+function clearData() {
+  title.value = "";
+  price.value = "";
+  taxes.value = "";
+  ads.value = "";
+  discount.value = "";
+  total.innerHTML = "";
+  count.value = "";
+  category.value = "";
+}
+
+
