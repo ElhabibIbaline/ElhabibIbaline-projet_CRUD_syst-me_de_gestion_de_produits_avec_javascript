@@ -12,6 +12,9 @@ let submit = document.getElementById("submit");
 // Verifier les inputs dans la console
 // console.log(title, price, taxes, ads, discount, total, count, category, submit);
 
+let mood = "create";
+let tmp;
+
 //getTotal + modifier le html (onkeyup)
 function getTotal() {
   // console.log('done');
@@ -52,13 +55,22 @@ submit.onclick = function () {
     category: category.value,
   };
 
-  if (newPro.count > 1) {
-    for (let i = 0; i < newPro.count; i++) {
+  if (mood === "create") {
+    if (newPro.count > 1) {
+      for (let i = 0; i < newPro.count; i++) {
+        dataPro.push(newPro);
+      }
+    } else {
       dataPro.push(newPro);
     }
   } else {
-    dataPro.push(newPro);
+    dataPro[tmp] = newPro;
+    mood = "create";
+    submit.innerHTML = "Create";
+    count.style.display = "block";
   }
+
+
 
   localStorage.setItem("product", JSON.stringify(dataPro));
 
@@ -88,6 +100,8 @@ read data
 
 function showData() {
 
+  getTotal();
+
   let table = "";
 
   for (let i = 0; i < dataPro.length; i++) {
@@ -101,8 +115,8 @@ function showData() {
           <td>${dataPro[i].discount} </td>
           <td>${dataPro[i].total} </td>
           <td>${dataPro[i].category} </td>
-          <td><button id="update">update</button></td>
-          <td><button onclick="deleteData(${i})" id="delete">delete</button></td>
+          <td><button onclick="updateData (${i})"  id="update">update </button></td>
+          <td><button onclick="deleteData (${i})" id="delete">delete</button></td>
       </tr>`;
 
   }
@@ -138,4 +152,26 @@ function deleteAll() {
   localStorage.clear();
   dataPro.splice(0);
   showData();
+}
+
+/*=========================
+updateData
+============================== */
+
+function updateData(i) {
+  title.value = dataPro[i].title;
+  price.value = dataPro[i].price;
+  taxes.value = dataPro[i].taxes;
+  ads.value = dataPro[i].ads;
+  discount.value = dataPro[i].discount;
+  getTotal();
+  count.style.display = "none";
+  category.value = dataPro[i].category;
+  submit.innerHTML = "Update";
+  mood = "update";
+  tmp = i;
+  scroll({
+    top: 0,
+    behavior: "smooth",
+  });
 }
