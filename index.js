@@ -175,3 +175,22 @@ function updateData(i) {
     behavior: "smooth",
   });
 }
+
+/*=========================
+search / getSearchMood()
+============================== */
+let searchMood = "title";
+
+function getSearchMood(id) {
+  // console.log(id);
+  let search = document.getElementById("search");
+  if (id == "searchTitle") {
+    searchMood = "title";
+    search.placeholder = "Sreach By Title";
+  } else {
+    searchMood = "category";
+    search.placeholder = "Sreach By category";
+  }
+ search.focus();
+    // console.log(searchMood);
+}
