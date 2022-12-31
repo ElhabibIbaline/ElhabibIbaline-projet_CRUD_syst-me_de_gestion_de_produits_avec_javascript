@@ -194,3 +194,50 @@ function getSearchMood(id) {
  search.focus();
     // console.log(searchMood);
 }
+
+/*=========================
+search / searchData()
+============================== */
+function searchData(value) {
+  let table = "";
+
+  if (searchMood == "title") {
+    for (let i = 0; i < dataPro.length; i++) {
+      if (dataPro[i].title.includes(value)) {
+        table += `
+    <tr>
+    <td>${i}</td>
+    <td>${dataPro[i].title} </td>
+    <td>${dataPro[i].price} </td>
+    <td>${dataPro[i].taxes} </td>
+    <td>${dataPro[i].ads} </td>
+    <td>${dataPro[i].discount} </td>
+    <td>${dataPro[i].total} </td>
+    <td>${dataPro[i].category} </td>
+    
+    <td><button onclick="updateData(${i})" id="update">update</button></td>
+    <td><button onclick="deleteData(${i})" id="delete">delete</button></td>
+  </tr>`;
+      }
+    }
+  } else {
+    for (let i = 0; i < dataPro.length; i++) {
+      if (dataPro[i].category.includes(value)) {
+        table += `
+          <tr>
+          <td>${i}</td>
+          <td>${dataPro[i].title} </td>
+          <td>${dataPro[i].price} </td>
+          <td>${dataPro[i].taxes} </td>
+          <td>${dataPro[i].ads} </td>
+          <td>${dataPro[i].discount} </td>
+          <td>${dataPro[i].total} </td>
+          <td>${dataPro[i].category} </td>      
+          <td><button onclick="updateData(${i})" id="update">update</button></td>
+          <td><button onclick="deleteData(${i})" id="delete">delete</button></td>
+        </tr>`;
+      }
+    }
+  }
+  document.getElementById("tbody").innerHTML = table;
+}

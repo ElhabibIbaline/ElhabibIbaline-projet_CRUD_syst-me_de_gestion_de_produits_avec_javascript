@@ -35,7 +35,7 @@
     <div class="outputs">
 
       <div class="searchBlock">
-        <input type="text" id="search" placeholder="Search" />
+        <input onkeyup="searchData(this.value)" type="text" id="search" placeholder="Search" />
         <div class="btnSearch">
           <button onclick="getSearchMood(this.id)" id="searchTitle">
             Serach By Title
