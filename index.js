@@ -45,14 +45,14 @@ if (localStorage.product != null) {
 
 submit.onclick = function () {
   let newPro = {
-    title: title.value,
+    title: title.value.toLowerCase(),
     price: price.value,
     taxes: taxes.value,
     ads: ads.value,
     discount: discount.value,
     total: total.innerHTML,
     count: count.value,
-    category: category.value,
+    category: category.value.toLowerCase(),
   };
 
   if (mood === "create") {
@@ -191,8 +191,10 @@ function getSearchMood(id) {
     searchMood = "category";
     search.placeholder = "Sreach By category";
   }
- search.focus();
-    // console.log(searchMood);
+  search.focus();
+  // console.log(searchMood);
+  search.value = '';
+  showData();
 }
 
 /*=========================
@@ -203,7 +205,7 @@ function searchData(value) {
 
   if (searchMood == "title") {
     for (let i = 0; i < dataPro.length; i++) {
-      if (dataPro[i].title.includes(value)) {
+      if (dataPro[i].title.includes(value.toLowerCase())) {
         table += `
     <tr>
     <td>${i}</td>
@@ -222,7 +224,7 @@ function searchData(value) {
     }
   } else {
     for (let i = 0; i < dataPro.length; i++) {
-      if (dataPro[i].category.includes(value)) {
+      if (dataPro[i].category.includes(value.toLowerCase())) {
         table += `
           <tr>
           <td>${i}</td>
